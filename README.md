@@ -75,8 +75,47 @@ To deploy this application on Cloud Run:
 3. **Cloud Build and Deployment**:
    - The `cloudbuild.yaml` file in the root directory will handle the creation of the container using the Dockerfile and deploy it to Cloud Run.
    - The application will be accessible through an unauthenticated public endpoint on Cloud Run.
+4. **Service Account Roles for Google Quality Search Engine**
 
-### Note for Cloud Deployment
+This document outlines the specific roles required for the service account used by the Google Quality Search Engine application to function correctly on Google Cloud.
+
+**Required Roles**
+
+The service account needs the following roles to access and interact with the necessary Google Cloud services:
+
+1. **Vertex AI Agent Builder:**
+
+   - **Vertex AI Search Agent:** This role grants the service account the ability to create, manage, and interact with the search agent within Vertex AI Agent Builder. It allows the service account to index data, perform searches, and manage the search agent's configuration.
+
+   - **Storage Object Viewer:** This role enables the service account to read data from the Cloud Storage bucket where the PDF files are stored. This is essential for the search agent to access the content of the files and index them for search.
+
+2. **Cloud Run:**
+
+   - **Cloud Run Invoker:** This role allows the service account to invoke Cloud Run services. This is crucial for deploying and running the backend application on Cloud Run. It enables the service account to trigger the backend service to handle search requests.
+
+3. **Cloud Storage:**
+
+   - **Storage Object Admin:** This role provides the service account with full control over objects in the Cloud Storage bucket. This includes uploading, deleting, and modifying files. It allows the service account to manage the PDF files used for indexing and search.
+
+**Importance of Role Assignment**
+
+- **Security:** Assigning specific roles to the service account ensures that it only has the necessary permissions to perform its tasks. This minimizes the risk of unauthorized access or actions.
+
+- **Efficiency:** By granting only the required permissions, the service account operates with the least privilege, improving performance and reducing potential conflicts.
+
+- **Compliance:** Adhering to the principle of least privilege is essential for compliance with security standards and regulations.
+
+**Best Practices**
+
+- **Review and Update:** Regularly review the roles assigned to the service account to ensure they remain appropriate and up-to-date.
+
+- **Least Privilege:** Always strive to grant the minimum permissions necessary for the service account to function correctly.
+
+- **Monitoring:** Monitor the service account's activity to detect any suspicious behavior or potential security breaches.
+
+By following these guidelines and assigning the appropriate roles to the service account, you can ensure the secure and efficient operation of the Google Quality Search Engine application on Google Cloud.
+
+**Note for Cloud Deployment**
 
 - If running on Cloud Run, ensure to uncomment the last line of `backend/main.py` to serve static files.
 
