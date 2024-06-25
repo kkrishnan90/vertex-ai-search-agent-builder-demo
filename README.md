@@ -114,6 +114,7 @@ The service account needs the following roles to access and interact with the ne
 - **Monitoring:** Monitor the service account's activity to detect any suspicious behavior or potential security breaches.
 
 By following these guidelines and assigning the appropriate roles to the service account, you can ensure the secure and efficient operation of the Google Quality Search Engine application on Google Cloud.
+For more information on service account and how to create or add roles to existing service account please refer to the link [https://cloud.google.com/iam/docs/service-accounts-create]
 
 **Note for Cloud Deployment**
 
